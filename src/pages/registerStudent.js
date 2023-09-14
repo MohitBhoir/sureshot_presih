@@ -2,17 +2,17 @@ import React,{useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 
-const RegisterUser = () => {
+const RegisterStudent = () => {
   const [formData,setFormData]=useState({
     name:'',
     email:'',
+    contact:'',
     password:'',
     password2:'',
   })
   const navigate=useNavigate()
 
-  const {name,email,password,password2}=formData
-  const type=localStorage.getItem('type')
+  const {name,email,contact,password,password2}=formData
 
   
   const handleChange=(e)=>{
@@ -24,7 +24,9 @@ const RegisterUser = () => {
 
   const handleSubmit=async(e)=>{
        e.preventDefault()
-       if(password!==password2){
+       if(contact.length>10){
+          toast.error('invalid contact number')
+       }else if(password!==password2){
             toast.error('password does not match')
        }else{
           const res = await fetch("/api/users/", {
@@ -33,7 +35,7 @@ const RegisterUser = () => {
                   "Authorization":"",
                   "Content-Type": "application/json"
               },
-              body: JSON.stringify({name:name,email:email,password:password,type:type})
+              body: JSON.stringify({name:name,email:email,password:password,type:1})
           })
           const data = await res.json()
           if(res.ok){
@@ -60,7 +62,7 @@ const RegisterUser = () => {
    <form className='shadow-2xl rounded-md  m-8 p-4  
 bg-gradient-to-t from-gray-200 to-red-500' onSubmit={handleSubmit}>
         <div  className='flex gap-6 justify-evenly my-2'>
-          <h2 className='text-red-700 font-bold text-2xl'>{type}</h2>
+          <h2 className='text-red-700 font-bold text-2xl'>student</h2>
         </div>
         <div  className='flex gap-6 justify-evenly my-2'>
           <input type="text" id="name" name="name" value={name} placeholder="Enter your name" 
@@ -68,6 +70,9 @@ bg-gradient-to-t from-gray-200 to-red-500' onSubmit={handleSubmit}>
         </div>
         <div className='flex gap-6 justify-evenly my-2'>
           <input type="email" id="email" name="email" value={email} placeholder="Enter your email" className='p-4 border-black border-2 rounded-md' onChange={handleChange}/>
+        </div>
+        <div className='flex gap-6 justify-evenly my-2'>
+          <input type="text" id="contact" name="contact" value={contact} placeholder="Enter your contact" className='p-4 border-black border-2 rounded-md' onChange={handleChange}/>
         </div>
         <div className='flex gap-6 justify-evenly my-2'>
           <input type="password" id="password" name="password" value={password} placeholder="Enter password" className='p-4 border-black border-2 rounded-md' onChange={handleChange}/>
@@ -84,4 +89,4 @@ bg-gradient-to-t from-gray-200 to-red-500' onSubmit={handleSubmit}>
   </>
 }
 
-export default RegisterUser
+export default RegisterStudent

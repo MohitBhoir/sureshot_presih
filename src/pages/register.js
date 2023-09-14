@@ -12,22 +12,19 @@ const Register = () => {
             <div>
             <Lottie animationData={admin} className='w-[500px] h-[500px]'/>
             <button onClick={()=>{
-                localStorage.setItem('type','admin')
-                navigate('/registerUser')
-          }} className='text-3xl text-emerald-600 font-bold ml-[20%] hover:text-white hover:bg-emerald-600 p-2 rounded-sm'>admin</button>
+                navigate('/registerInstitute')
+          }} className='text-3xl text-emerald-600 font-bold ml-[20%] hover:text-white hover:bg-emerald-600 p-2 rounded-sm'>Institute</button>
         </div>
         <div>
             <Lottie animationData={teacher} className='w-[500px] h-[500px]'/>
             <button onClick={()=>{
-                localStorage.setItem('type','teacher')
-                navigate('/registerUser')
-            }} className='text-3xl text-amber-800 font-bold ml-[20%] hover:text-white hover:bg-amber-800 p-2 rounded-sm'>Teacher</button>
+                navigate('/registerFaculty')
+            }} className='text-3xl text-amber-800 font-bold ml-[20%] hover:text-white hover:bg-amber-800 p-2 rounded-sm'>Faculty</button>
         </div>
         <div>
             <Lottie animationData={student} className='w-[500px] h-[500px]'/>
             <button onClick={()=>{
-                localStorage.setItem('type','student')
-                navigate('/registerUser')
+                navigate('/registerStudent')
             }} className='text-3xl text-blue-700
             font-bold ml-[20%] hover:text-white hover:bg-blue-700 p-2 rounded-sm'>
               student</button>

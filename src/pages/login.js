@@ -20,14 +20,26 @@ const LoginUser = () => {
 
   const handleSubmit=async(e)=>{
         e.preventDefault()
-        console.log(formData)
+        // console.log(formData)
+        let finalType=0
+        if(formData.type=='Student'){
+             finalType=1
+        }else if(formData.type=='Institute'){
+             finalType=2
+        }else if(formData.type=='Faculty'){
+             finalType=3
+        }
+        localStorage.setItem('userData',JSON.stringify(formData))
+        if(formData.type=='Student'){
+              navigate('/studentDashboard')
+        }
     //     const res=await fetch('/api/users/login/',{
     //        method:"POST",
     //        headers:{
     //           "Authorization":"",
     //           "Content-Type":"application/json"
     //        },
-    //        body:JSON.stringify({email:email,password:password,type:type})
+    //        body:JSON.stringify({email:email,password:password,type:finalType})
     //     })
     //     const data=await res.json()
     //     if(res.ok){
@@ -55,8 +67,8 @@ const LoginUser = () => {
    </div><form className='shadow-2xl rounded-md  m-8 p-4 bg-gradient-to-t from-gray-200 to-red-500' onSubmit={handleSubmit}>
        <div className='flex gap-6 justify-evenly my-2'>
             <select id="type" name="type" value={type} onChange={handleChange}>
-                <option value="Admin">Admin</option>
-                <option value="Teacher">Teacher</option>
+                <option value="Institute">Institute</option>
+                <option value="Faculty">Faculty</option>
                 <option value="Student">Student</option>
             </select>
        </div>
