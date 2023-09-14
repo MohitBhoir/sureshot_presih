@@ -107,6 +107,42 @@ router.route('/courses').get((request,response)=>{
     })
 })
 
+router.route('/faculty/course').post((request,response)=> //remaining to check
+{
+    let params = {... request.body};
+    Db.addFacultyCourse(params).then(result=>
+        {
+            response.status(201).json(result);
+        })
+})
+
+router.route('/student/course').post((request,response)=> //remaining to check
+{
+    let params = {... request.body};
+    Db.addStudentCourse(params).then(result=>
+        {
+            response.status(201).json(result);
+        })
+})
+
+
+router.route('/question').post((request,response)=>
+{
+    let questionDetails = {... request.body};
+    Db.addQuestion(questionDetails).then(result=>
+        {
+            response.status(201).json(result);
+        })
+})
+
+
+router.route('/question/:id/').get((request,response)=>{
+    Db.getCourseQuestionBank(request.params.id).then(result =>{
+        response.json(result);
+    })
+})
+
+//get QBAF- diff version remaining
 
 var port = process.env.PORT||8080;
 app.listen(port);
