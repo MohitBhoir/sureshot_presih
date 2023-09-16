@@ -5,21 +5,21 @@ import { useNavigate } from 'react-router-dom'
 
 const Courses = () => {
   const [showModal,setShowModal]=useState(false)
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState([]);
   const [str,setStr]=useState('')
 
-  const options = ["SQL", "DBMS", "DSA", "Logical reasoning"]; // Replace with your options
+  const options = ["SQL", "DBMS", "DSA", "Logical reasoning","React","Maths","Operating system","Machine learning","Computer Networks","Verbal reasoning"]; // Replace with your options
 
   const handleOptionChange = (e) => {
-        setSelectedOption(e.target.value)
-        setStr(str+e.target.value)
+        selectedOption.push(e.target.value);
+        setStr(str+e.target.value+",")
   };
 
   const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
         e.preventDefault();
-        console.log(str);
+        console.log(str.slice(0,str.length-1));
     //     try{
     //         const res=await fetch('/api/events',{
     //         method:"POST",
@@ -48,7 +48,8 @@ const Courses = () => {
 
   return <>
      <button
-        className="bg-yellow-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="bg-yellow-500 text-white active:bg-blue-600 
+        font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 mt-5"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -76,13 +77,13 @@ const Courses = () => {
                 </div>
                 <div className="relative p-6 flex-auto">
                   <form className='m-8 p-4' onSubmit={handleSubmit}>
-                    <div className='flex gap-6 justify-evenly'>
+                    <div className='grid grid-cols-3 gap-3'>
                         {options.map((option,index) => (
                         <label key={option}>
                           <input
                             type="radio"
                             value={index}
-                            checked={selectedOption === index.toString()}
+                            checked={selectedOption.includes(index.toString())}
                             onChange={handleOptionChange}
                             className='cursor-pointer'
                           />

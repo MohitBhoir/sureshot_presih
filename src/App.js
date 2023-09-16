@@ -10,6 +10,8 @@ import RegisterStudent from './pages/registerStudent'
 import RegisterInstitute from './pages/registerInstitute'
 import RegisterFaculty from './pages/registerFaculty'
 import StudentDash from './pages/studentDashboard'
+import TestWindow from './pages/testWindow'
+import Test from './pages/test'
 
 const App = () => {
   return <>
@@ -23,6 +25,8 @@ const App = () => {
                 <Route path="/registerInstitute" element={<RegisterInstitute/>}/>
                 <Route path="/registerFaculty" element={<RegisterFaculty/>}/>
                 <Route path="/studentDashboard" element={<StudentDash/>}/>
+                <Route path="/testWindow" element={<TestWindow/>} />
+                <Route path="/test" element={<Test/>} />
            </Routes>
      </Router>
     <ToastContainer/>
