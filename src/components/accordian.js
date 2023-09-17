@@ -23,7 +23,7 @@ const Accordian=()=>{
   const navigate=useNavigate()
   const handleClick=(id,title)=>{
        localStorage.setItem('testInfo',JSON.stringify({id:id,title:title}))
-       navigate("/test")
+       navigate("/testWindow")
   }
   return (
     <Accordion>

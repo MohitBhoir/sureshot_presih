@@ -32,6 +32,8 @@ const LoginUser = () => {
         localStorage.setItem('userData',JSON.stringify(formData))
         if(formData.type=='Student'){
               navigate('/studentDashboard')
+        }else if(formData.type=='Faculty'){
+              navigate('/facultyDashboard')
         }
     //     const res=await fetch('/api/users/login/',{
     //        method:"POST",
