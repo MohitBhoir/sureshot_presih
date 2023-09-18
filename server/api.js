@@ -107,12 +107,28 @@ router.route('/institute/:id/course').get((request,response)=>{
     })
 })
 
+router.route('/institute/:id').get((request,response)=>{
+    Db.getInstitute(request.params.id).then(result =>{
+        response.json(result);
+    })
+})
+
 router.route('/courses').get((request,response)=>{
     
     Db.getCourses().then(result =>{
         response.json(result);
     })
 })
+
+router.route('/course').post((request,response)=>
+{
+    let courseDetails = {... request.body};
+    Db.addCourse(courseDetails).then(result=>
+        {
+            response.status(201).json(result);
+      })
+})
+
 
 router.route('/faculty/course').post((request,response)=> //remaining to check
 {
@@ -152,7 +168,7 @@ router.route('/testlog').post((request,response)=>
 })
 
 
-router.route('/question/:id/').get((request,response)=>{
+router.route('/question/:id').get((request,response)=>{
     Db.getCourseQuestionBank(request.params.id).then(result =>{
         response.json(result);
     })

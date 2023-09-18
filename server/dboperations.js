@@ -175,6 +175,20 @@ async function getInstituteCourse(Inst_Id){
     }
 }
 
+async function getInstitute(Inst_Id){
+    try{
+        let pool = await sql.connect(config);
+        let product = await pool.request()
+            .input("Inst_Id", sql.Int, Inst_Id)
+            .execute('DisplayInstituteList');
+        return product.recordsets;
+            
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 async function getCourses(){
     try{
         let pool = await sql.connect(config);
@@ -187,6 +201,22 @@ async function getCourses(){
         console.log(err);
     }
 }
+
+async function addCourse(params) 
+{
+    try
+    {
+        let pool = await sql.connect(config);
+        let insetNewCourse = await pool.request()
+            .input('Course_Name',sql.VarChar(50),params.Course_Name)   
+            .input('Course_Code',sql.VarChar(8000),params.Course_Code) 
+            .execute('AddCourse');
+        return insetNewCourse.recordsets;    
+    }
+    catch(error){
+        console.log(error); }
+}
+
 
 async function addFacultyCourse(params) //remaining to check
 {
@@ -285,13 +315,15 @@ module.exports ={
     getStudentCourse: getStudentCourse,
     getStudent: getStudent,
     getCourses: getCourses,
+    addCourse: addCourse,
     getFaculty: getFaculty,
     getFacultyCourse: getFacultyCourse,
     getInstituteCourse: getInstituteCourse,
+    getInstitute: getInstitute,
     addFacultyCourse: addFacultyCourse,
     addStudentCourse: addStudentCourse,
     addQuestion: addQuestion,
     getCourseQuestionBank: getCourseQuestionBank,
     getTestLog : getTestLog,
-    addToTestLog : addToTestLog
+    addToTestLog : addToTestLog,
 }
