@@ -1,18 +1,15 @@
 const config = 
 {
     user: 'sa',
-    password: 'root',
-    server:'AKASH',
-    database:'PreSIH_Good',
+    password:'root',    
+    server:'LAPTOP-9IHDAQAC',    
+    database:'PreSIH_good',
     options:
     {
         trustedconnection : true,
         enableArithAbort : true,
-        instancename : 'SQLEXPRESS',
-        trustServerCertificate: true
-
-    },
-    
+        instancename : 'MSSQLSERVER',
+        trustServerCertificate: true,
+    },    
 }
-
 module.exports = config;

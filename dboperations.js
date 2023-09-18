@@ -70,8 +70,7 @@ async function addInstitute(Master_Table)
         let insertNewInstitute = await pool.request()
             
             .input('Password',sql.VarChar(150),Master_Table.Password)   
-            .input('Name',sql.VarChar(150),Master_Table.Name) 
-            .input('AICTEApproved', sql.Bit, Master_Table.AICTEApproved) // Use sql.VarBinary instead of sql.Binary
+            .input('Name',sql.VarChar(150),Master_Table.Name)  // Use sql.VarBinary instead of sql.Binary
             // .input('AISHECode', sql.VarBinary, AISHECodeBuffer)         // Use sql.VarBinary instead of sql.Binary
             .input('Address',sql.VarChar(100),Master_Table.Address) 
             .input('Inst_State',sql.VarChar(8000),Master_Table.Inst_State) 
@@ -101,6 +100,24 @@ async function getStudentCourse(Student_Id){
         console.log(err);
     }
 }
+
+async function getTestLog(Student_Id){
+    try{
+        let pool = await sql.connect(config);
+        let product = await pool.request()
+            .input("Student_Id", sql.Int,Student_Id)
+            .execute('DisplayTestLog');
+        return product.recordsets;
+            
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+
+
+
 
 async function getStudent(Student_Id){
     try{
@@ -217,7 +234,8 @@ async function addQuestion(params) //remaining to check
             .input('Answer3',sql.VarChar(8000),params.Answer3)   
             .input('isCorrect3',sql.Bit,params.isCorrect3)   
             .input('Answer4',sql.VarChar(8000),params.Answer4)   
-            .input('isCorrect4',sql.Bit,params.isCorrect4)   
+            .input('isCorrect4',sql.Bit,params.isCorrect4)  
+            .input('TimeLimit',sql.Int,params.TimeLimit) 
             .execute('AddQuestion');
         return insertNewQuestion.recordsets;    
     }
@@ -226,18 +244,37 @@ async function addQuestion(params) //remaining to check
 }
 
 
-async function getCourseQuestionBank(Inst_Id){
+async function getCourseQuestionBank(CourseId){
     try{
         let pool = await sql.connect(config);
         let qb = await pool.request()
-            .input("Course_Id", sql.Int,Course_Id)
-            .execute('DisplayInstituteCourse');
+            .input("CourseId", sql.Int,CourseId)
+            .execute('DisplayQBAF');
         return qb.recordsets;
             
     }
     catch(err){
         console.log(err);
     }
+}
+
+
+async function addToTestLog(params) //remaining to check
+{
+    try
+    {
+        let pool = await sql.connect(config);
+        let insertNewStudentCourse = await pool.request()
+            .input('StudentId',sql.Int,params.StudentId)   
+            .input('CourseId',sql.Int,params.CourseId) 
+            .input('MarksScored',sql.Int,params.MarksScored)   
+            .input('TotalMarks',sql.Int,params.TotalMarks) 
+            .input('AvgDiff',sql.Float,params.AvgDiff)
+            .execute('AddToTestLog');
+        return insertNewStudentCourse.recordsets;    
+    }
+    catch(error){
+        console.log(error); }
 }
 
 module.exports ={
@@ -254,5 +291,7 @@ module.exports ={
     addFacultyCourse: addFacultyCourse,
     addStudentCourse: addStudentCourse,
     addQuestion: addQuestion,
-    getCourseQuestionBank: getCourseQuestionBank
+    getCourseQuestionBank: getCourseQuestionBank,
+    getTestLog : getTestLog,
+    addToTestLog : addToTestLog
 }

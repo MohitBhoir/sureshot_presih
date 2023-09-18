@@ -1,28 +1,24 @@
-const Db = require('./dboperations');
-// const config = require('./config');
-
-// const UserTable = require('../Tables/UserTable');
-// var Userstable = require('./Tables/UserTable');
 const userRouter = require('./api/user/user.router');
-// var Course = require('./Tables/Courses');
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+const Db = require('./dboperations');
 var app = express();
 var router = express.Router();
 
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors({origin: true, credentials: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(cors({"origin" : "http://localhost:3000"}));
 app.use('/api',router);
 app.use("/", userRouter);
 
 router.use((request, response, next)=> { //middleware(used for authentication)
-    // console.log("middleware");s
+    // console.log("middleware");
     next();
 })
+
 
 router.route('/user').get((request,response)=>{
     
@@ -78,6 +74,17 @@ router.route('/student/:id').get((request,response)=>{
     })
 })
 
+
+router.route('/testlog/:id').get((request,response)=>{
+    
+    Db.getTestLog(request.params.id).then(result =>{
+        response.json(result);
+    })
+})
+
+
+
+
 router.route('/faculty/:id/course').get((request,response)=>
 {
     Db.getFacultyCourse(request.params.id).then(result =>{
@@ -130,6 +137,15 @@ router.route('/question').post((request,response)=>
 {
     let questionDetails = {... request.body};
     Db.addQuestion(questionDetails).then(result=>
+        {
+            response.status(201).json(result);
+        })
+})
+
+router.route('/testlog').post((request,response)=>
+{
+    let questionDetails = {... request.body};
+    Db.addToTestLog(questionDetails).then(result=>
         {
             response.status(201).json(result);
         })
