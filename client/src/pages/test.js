@@ -28,12 +28,76 @@ const Test = () => {
   const [qCount, setQCount] = useState(1);
   let timerInterval;
 
-  useEffect(() => {
+  const fetchQbank = async (courseid) => {
+    try {
+      const res = await fetch('/api/question/' + courseid.toString(), {
+        method: "GET",
+        headers: {
+          "Authorization": "",
+          "Content-Type": "application/json"
+        }
+      })
+      const data = await res.json()
+      if (res.ok) {
+        // console.log(data);
+        return data
+      }
+    } catch (error) {
+      toast.error("sorry,some unexpected error occured!")
+      console.log(error)
+    }
+  }
+
+  function convertQbank(inputData) {
+    const template = {
+      "id": 21,
+      "question": "What is the purpose of the 'volatile' keyword in C++?",
+      "options": [],
+      "correctAnswer": "",
+      "difficulty": 5,
+      "timeLimit": 30,
+      "marks": 15
+    };
+
+    const templateQuestions = [];
+    let currentQuestion = null;
+
+    for (const item of inputData) {
+      // console.log(item)
+      if (currentQuestion == null) {
+        currentQuestion = { ...template };
+        currentQuestion.question = item.Question;
+        currentQuestion.difficulty = item.Difficulty;
+        currentQuestion.timeLimit = item.TimeLimit;
+        currentQuestion.marks = item.Marks;
+      }
+
+      currentQuestion.options.push(item.Answer);
+
+      if (item.isCorrect) {
+        currentQuestion.correctAnswer = item.Answer;
+      }
+
+      if (currentQuestion.options.length >= 4) {
+        templateQuestions.push(currentQuestion);
+        currentQuestion = null;
+      }
+    }
+
+    return templateQuestions;
+  }
+
+  useEffect( () => {
+    // const courseid = testInfo.id;
+    // const data = await fetchQbank(courseid)
+    // const templateQuestions = convertQbank(data[0])
+    // console.log(templateQuestions)
     const questionsWithAttemptedFlag = questions.map((question) => ({
       ...question,
       isAttempted: false,
     }));
     setQuestions(questionsWithAttemptedFlag)
+    // console.log(questionsWithAttemptedFlag)
   }, [])
 
   useEffect(() => {
@@ -268,7 +332,7 @@ const Test = () => {
   return <>
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Online Test</h1>
-      {(qCount < maxLen+1 && currentQuestion < questions.length) ? (
+      {(qCount < maxLen + 1 && currentQuestion < questions.length) ? (
         <div>
           <p>Question {qCount}:</p>
           <p>{questions[currentQuestion].question}</p>

@@ -59,7 +59,7 @@ const TimeLine = () => {
     < Timeline >
       {
         dummy.toReversed().map((e) => {
-          console.log(e)
+          // console.log(e)
           return <Timeline.Item key={e.MarksScored}>
             <Timeline.Point icon={HiCalendar} />
             <Timeline.Content>

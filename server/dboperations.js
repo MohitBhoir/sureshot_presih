@@ -256,7 +256,7 @@ async function addStudentCourse(params)
         let pool = await sql.connect(config);
         let insertNewStudentCourse = await pool.request()
             .input('Student_Id',sql.Int,params.Student_Id)   
-            .input('CourseIdsString',sql.NVarChar(MAX),params.CourseIdsString) 
+            .input('CourseIdsString',sql.NVarChar(sql.MAX),params.CourseIdsString) 
             .execute('CourseStudentRegister');
         return insertNewStudentCourse.recordsets;    
     }
