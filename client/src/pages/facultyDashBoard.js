@@ -16,7 +16,6 @@ const FacultyDashBoard = () => {
     factid = user.Id
   }
   const [showModal, setShowModal] = useState(false)
-  const [showNewCourse, setShowNewCourse] = useState(false)
   const [showQBank, setShowQbank] = useState(false)
   const [selectedOption, setSelectedOption] = useState([])
   const [data, setData] = useState(null)
@@ -200,18 +199,9 @@ const FacultyDashBoard = () => {
       className="bg-yellow-500 text-white active:bg-blue-600 
         font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 mt-5"
       type="button"
-      onClick={() => setShowNewCourse(true)}
-    >
-      Add new courses
-    </button>
-
-    <button
-      className="bg-yellow-500 text-white active:bg-blue-600 
-        font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 mt-5"
-      type="button"
       onClick={() => setShowQbank(true)}
     >
-      Add QBank
+      create Question Bank
     </button>
   </>
 }

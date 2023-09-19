@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import Ml from '../components/ML/ml'
 
 const qbank = require('./qbank.json');
 
@@ -87,7 +88,7 @@ const Test = () => {
     return templateQuestions;
   }
 
-  useEffect( () => {
+  useEffect(() => {
     // const courseid = testInfo.id;
     // const data = await fetchQbank(courseid)
     // const templateQuestions = convertQbank(data[0])
@@ -332,6 +333,9 @@ const Test = () => {
   return <>
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Online Test</h1>
+      <div className="image-capture">
+        <Ml />
+      </div>
       {(qCount < maxLen + 1 && currentQuestion < questions.length) ? (
         <div>
           <p>Question {qCount}:</p>
