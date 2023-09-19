@@ -1,103 +1,121 @@
-import React,{useState} from 'react'
-import { Accordion } from 'flowbite-react';
+import React,{useState,useEffect} from 'react'
 import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
-const dummy=[
-     {
-        id:1,
-        title:'DBMS',
-        desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus commodi obcaecati facilis velit similique dolores, ipsam soluta eveniet, corporis necessitatibus illo at, iusto eum nobis porro tempore aliquam reprehenderit architecto veniam itaque. Enim, beatae sint assumenda culpa ratione delectus sed.'
-     },
-     {
-        id:2,
-        title:'Maths',
-        desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus commodi obcaecati facilis velit similique dolores, ipsam soluta eveniet, corporis necessitatibus illo at, iusto eum nobis porro tempore aliquam reprehenderit architecto veniam itaque. Enim, beatae sint assumenda culpa ratione delectus sed.'
-     }
-]
+
 const FacultyDashBoard = () => {
   const [showModal,setShowModal]=useState(false)
-  const [formData,setFormData]=useState({
-    title:'',
-    description:'',
-  })
-const {title,description}=formData
+  const [selectedOption, setSelectedOption] = useState([])
+  const [data,setData]=useState(null)
+  const [facData,setFacData]=useState(null)
+  const [courseData,setCourseData]=useState(null)
+  const [str,setStr]=useState('')
 
-  const handleChange=(e)=>{
-    setFormData((prevState)=>({
-       ...prevState,
-       [e.target.name]:e.target.value,
-    }))
-  }
- 
-   const handleClick=()=>{
-     
-   }
+  // const options = ["SQL", "DBMS", "DSA", "Logical reasoning","React","Maths","Operating system","Machine learning","Computer Networks","Verbal reasoning"]; // Replace with your options
+
+  const handleOptionChange = (e) => {
+        selectedOption.push(e.target.value);
+        setStr(str+e.target.value+",")
+  };
+
   const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
         e.preventDefault();
-    //     try{
-    //         const res=await fetch('/api/events',{
-    //         method:"POST",
-    //         headers:{
-    //             "Authorization":`Bearer ${userAdmin.token}`,
-    //             "Content-Type":"application/json"
-    //         },
-    //         body:JSON.stringify({title:title,description:description})
-    //       })
-    //       const data=await res.json()
-    //       if(res.ok){
-    //           toast.success("event added successfully")
-    //           localStorage.removeItem('e')
-    //           navigate("/feed")
-    //       }else{
-    //           toast.error('user not authorized')
-    //           navigate('/adDash')
-    //       }
-    //    }catch(error){
-    //         toast.error("sorry,some unexpected error occured!")
-    //         console.log(error)
-    //         navigate("/adDash")
-    //    }
+        try{
+            const res=await fetch('/api/faculty/course',{
+            method:"POST",
+            headers:{
+                "Authorization":``,
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({Fac_Id:4,CourseIdsString:str.slice(0,str.length-1)})
+          })
+          const data=await res.json()
+          if(res.ok){
+              toast.success("Course registered successfully")
+              fetchFacultyCourses()
+          }else{
+              toast.error('user not authorized')
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+       }
   }
 
+  const fetchCourses=async()=>{
+       try{
+            const res=await fetch('/api/courses',{
+            method:"GET",
+            headers:{
+                "Authorization":"",
+                "Content-Type":"application/json"
+            }
+          })
+          const data=await res.json()
+          if(res.ok){
+              setData(data)
+              console.log(data)
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+       }
+  }
+
+  const fetchFacultyCourses=async()=>{
+       try{
+            const res=await fetch('/api/faculty/4/course',{
+            method:"GET",
+            headers:{
+                "Authorization":"",
+                "Content-Type":"application/json"
+            }
+          })
+          const data=await res.json()
+          if(res.ok){
+              setFacData(data)
+              console.log(facData)
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+       }
+  }
+
+  useEffect(()=>{
+       fetchCourses()
+  },[])
 
   return <>
-     <h1 className='text-2xl font-bold text-red-800 p-3'>Courses</h1>
-     <Accordion>
+    <h1 className='text-2xl font-bold text-red-800 p-3'>Courses Registered</h1>
+     {/* <Accordion>
       {
-          dummy.map((e)=>{
-             const {title,desc,id}=e
-              return <Accordion.Panel key={id}>
+          facData?facData[0].map((e)=>{
+             const {Course_Id,Course_Name,Course_Code}=e
+              return <Accordion.Panel key={Course_Id}>
         <Accordion.Title className='text-red-700'>
-           {title}
+           {Course_Name}
         </Accordion.Title>
         <Accordion.Content>
           <p className="mb-2 text-gray-600 dark:text-gray-400">
             <p>
-              {desc}
+              {Course_Code}
             </p>
-          </p>
-          <p className="text-gray-600 dark:text-gray-400">
-            <button
-              className="bg-yellow-500 text-white p-2 rounded-md"
-              onClick={()=>handleClick(id,title)}
-            >Add Questions
-            </button>
           </p>
         </Accordion.Content>
       </Accordion.Panel>
-          })
+          }):<></>
       }
-    </Accordion>
+    </Accordion> */}
      <button
         className="bg-yellow-500 text-white active:bg-blue-600 
-        font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 mt-5 ml-3"
+        font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 mt-5"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Add course
+        Register for courses
       </button>
       {showModal ? (
         <>
@@ -108,7 +126,7 @@ const {title,description}=formData
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <h1 className='font-bold text-2xl text-center text-red-700 mt-5'>Add course</h1>
+                <h1 className='font-bold text-2xl text-center text-red-700 mt-5'>Select courses</h1>
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -120,17 +138,25 @@ const {title,description}=formData
                   </button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <form className='shadow-2xl rounded-md  m-8 p-4' onSubmit={handleSubmit}>
-                    <div className='flex gap-6 justify-evenly my-2'>
-                    <input type="title" id="title" name="title" value={title} placeholder="Enter title" className='p-4 border-black border-2 rounded-md' onChange={handleChange}/>
-                    </div>
-                    <div className='flex gap-6 justify-evenly my-2'>
-                    <input type="description" id="description" name="description" value={description} placeholder="Enter description" className='p-4 border-black border-2 rounded-md' onChange={handleChange}/>
+                  <form className='m-8 p-4' onSubmit={handleSubmit}>
+                    <div className='grid grid-cols-3 gap-3'>
+                        {data?data[0].map((option,index) => (
+                        <label key={option.Course_Id}>
+                          <input
+                            type="radio"
+                            value={option.Course_Id}
+                            checked={selectedOption.includes(option.Course_Id.toString())}
+                            onChange={handleOptionChange}
+                            className='cursor-pointer'
+                          />
+                          {option.Course_Name}
+                        </label>
+                      )):<></>}
                     </div>
                     <div className='flex justify-center items-center'>
-                    <button type="submit" className='p-2 text-white bg-emerald-600 
-                    hover:text-black hover:bg-slate-400
-                    duration-100 rounded-md hover:p-3'>Submit</button>
+                    <button type="submit" className='p-2 text-white bg-yellow-600 
+                    hover:text-black hover:bg-emerald-400
+                    duration-100 rounded-md hover:p-3 mt-7'>Submit</button>
                     </div>
                 </form>
                 </div>

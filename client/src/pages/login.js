@@ -6,7 +6,7 @@ const LoginUser = () => {
   const [formData,setFormData]=useState({
     email:'',
     password:'',
-    type:''
+    type:'Institute'
   })
   const navigate=useNavigate()
   const {email,password,type}=formData
@@ -34,6 +34,8 @@ const LoginUser = () => {
               navigate('/studentDashboard')
         }else if(formData.type=='Faculty'){
               navigate('/facultyDashboard')
+        }else if(formData.type=='Institute'){
+              navigate('/instituteDashboard')
         }
     //     const res=await fetch('/api/users/login/',{
     //        method:"POST",

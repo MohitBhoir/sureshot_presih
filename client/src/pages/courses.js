@@ -1,14 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
 
 const Courses = () => {
   const [showModal,setShowModal]=useState(false)
-  const [selectedOption, setSelectedOption] = useState([]);
+  const [selectedOption, setSelectedOption] = useState([])
+  const [data,setData]=useState(null)
+  const [courseData,setCourseData]=useState(null)
   const [str,setStr]=useState('')
 
-  const options = ["SQL", "DBMS", "DSA", "Logical reasoning","React","Maths","Operating system","Machine learning","Computer Networks","Verbal reasoning"]; // Replace with your options
+  // const options = ["SQL", "DBMS", "DSA", "Logical reasoning","React","Maths","Operating system","Machine learning","Computer Networks","Verbal reasoning"]; // Replace with your options
 
   const handleOptionChange = (e) => {
         selectedOption.push(e.target.value);
@@ -19,32 +21,49 @@ const Courses = () => {
 
   const handleSubmit=async(e)=>{
         e.preventDefault();
-        console.log(str.slice(0,str.length-1));
-    //     try{
-    //         const res=await fetch('/api/events',{
-    //         method:"POST",
-    //         headers:{
-    //             "Authorization":`Bearer ${userAdmin.token}`,
-    //             "Content-Type":"application/json"
-    //         },
-    //         body:JSON.stringify({title:title,description:description,link:link,name:name,date:date})
-    //       })
-    //       const data=await res.json()
-    //       if(res.ok){
-    //           toast.success("event added successfully")
-    //           localStorage.removeItem('e')
-    //           navigate("/feed")
-    //       }else{
-    //           toast.error('user not authorized')
-    //           navigate('/adDash')
-    //       }
-    //    }catch(error){
-    //         toast.error("sorry,some unexpected error occured!")
-    //         console.log(error)
-    //         navigate("/adDash")
-    //    }
+        try{
+            const res=await fetch('/api/student/course',{
+            method:"POST",
+            headers:{
+                "Authorization":``,
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({Student_Id:2,CourseIdsString:str.slice(0,str.length-1)})
+          })
+          const data=await res.json()
+          if(res.ok){
+              toast.success("Course registered successfully")
+          }else{
+              toast.error('user not authorized')
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+       }
   }
 
+  const fetchCourses=async()=>{
+       try{
+            const res=await fetch('/api/courses',{
+            method:"GET",
+            headers:{
+                "Authorization":"",
+                "Content-Type":"application/json"
+            }
+          })
+          const data=await res.json()
+          if(res.ok){
+              setData(data)
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+       }
+  }
+
+  useEffect(()=>{
+       fetchCourses()
+  },[])
 
   return <>
      <button
@@ -78,18 +97,18 @@ const Courses = () => {
                 <div className="relative p-6 flex-auto">
                   <form className='m-8 p-4' onSubmit={handleSubmit}>
                     <div className='grid grid-cols-3 gap-3'>
-                        {options.map((option,index) => (
-                        <label key={option}>
+                        {data?data[0].map((option,index) => (
+                        <label key={option.Course_Id}>
                           <input
                             type="radio"
-                            value={index}
-                            checked={selectedOption.includes(index.toString())}
+                            value={option.Course_Id}
+                            checked={selectedOption.includes(option.Course_Id.toString())}
                             onChange={handleOptionChange}
                             className='cursor-pointer'
                           />
-                          {option}
+                          {option.Course_Name}
                         </label>
-                      ))}
+                      )):<></>}
                     </div>
                     <div className='flex justify-center items-center'>
                     <button type="submit" className='p-2 text-white bg-yellow-600 

@@ -1,22 +1,23 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Accordion } from 'flowbite-react';
 import {toast} from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
-const dummy=[
-     {
-        id:1,
-        title:'DBMS',
-        desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus commodi obcaecati facilis velit similique dolores, ipsam soluta eveniet, corporis necessitatibus illo at, iusto eum nobis porro tempore aliquam reprehenderit architecto veniam itaque. Enim, beatae sint assumenda culpa ratione delectus sed.'
-     },
-     {
-        id:2,
-        title:'Maths',
-        desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus commodi obcaecati facilis velit similique dolores, ipsam soluta eveniet, corporis necessitatibus illo at, iusto eum nobis porro tempore aliquam reprehenderit architecto veniam itaque. Enim, beatae sint assumenda culpa ratione delectus sed.'
-     }
-]
-const FacultyDashBoard = () => {
+// const dummy=[
+//      {
+//         id:1,
+//         title:'DBMS',
+//         desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus commodi obcaecati facilis velit similique dolores, ipsam soluta eveniet, corporis necessitatibus illo at, iusto eum nobis porro tempore aliquam reprehenderit architecto veniam itaque. Enim, beatae sint assumenda culpa ratione delectus sed.'
+//      },
+//      {
+//         id:2,
+//         title:'Maths',
+//         desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus commodi obcaecati facilis velit similique dolores, ipsam soluta eveniet, corporis necessitatibus illo at, iusto eum nobis porro tempore aliquam reprehenderit architecto veniam itaque. Enim, beatae sint assumenda culpa ratione delectus sed.'
+//      }
+// ]
+const InstituteDashBoard = () => {
   const [showModal,setShowModal]=useState(false)
+  const [data,setData]=useState(null)
   const [formData,setFormData]=useState({
     title:'',
     description:'',
@@ -30,65 +31,75 @@ const {title,description}=formData
     }))
   }
  
-   const handleClick=()=>{
-     
-   }
   const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
         e.preventDefault();
-    //     try{
-    //         const res=await fetch('/api/events',{
-    //         method:"POST",
-    //         headers:{
-    //             "Authorization":`Bearer ${userAdmin.token}`,
-    //             "Content-Type":"application/json"
-    //         },
-    //         body:JSON.stringify({title:title,description:description})
-    //       })
-    //       const data=await res.json()
-    //       if(res.ok){
-    //           toast.success("event added successfully")
-    //           localStorage.removeItem('e')
-    //           navigate("/feed")
-    //       }else{
-    //           toast.error('user not authorized')
-    //           navigate('/adDash')
-    //       }
-    //    }catch(error){
-    //         toast.error("sorry,some unexpected error occured!")
-    //         console.log(error)
-    //         navigate("/adDash")
-    //    }
+        try{
+            const res=await fetch('/api/course',{
+            method:"POST",
+            headers:{
+                "Authorization":"",
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({Course_Name:title,Course_Code:description})
+          })
+          const data=await res.json()
+          if(res.ok){
+              toast.success("Course added successfully")
+              navigate("/instituteDashboard")
+          }else{
+              toast.error('user not authorized')
+            //   navigate('/adDash')
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+            // navigate("/adDash")
+       }
   }
 
+  const fetchCourses=async()=>{
+       try{
+            const res=await fetch('/api/courses',{
+            method:"GET",
+            headers:{
+                "Authorization":"",
+                "Content-Type":"application/json"
+            }
+          })
+          const data=await res.json()
+          if(res.ok){
+              setData(data)
+          }
+       }catch(error){
+            toast.error("sorry,some unexpected error occured!")
+            console.log(error)
+       }
+  }
+  useEffect(()=>{
+       fetchCourses()
+  },[])
 
   return <>
-     <h1 className='text-2xl font-bold text-red-800 p-3'>Courses</h1>
+     <h1 className='text-2xl font-bold text-red-800 p-3'>All Courses</h1>
      <Accordion>
       {
-          dummy.map((e)=>{
-             const {title,desc,id}=e
-              return <Accordion.Panel key={id}>
+          data?data[0].map((e)=>{
+             const {Course_Id,Course_Name,Course_Code}=e
+              return <Accordion.Panel key={Course_Id}>
         <Accordion.Title className='text-red-700'>
-           {title}
+           {Course_Name}
         </Accordion.Title>
         <Accordion.Content>
           <p className="mb-2 text-gray-600 dark:text-gray-400">
             <p>
-              {desc}
+              {Course_Code}
             </p>
-          </p>
-          <p className="text-gray-600 dark:text-gray-400">
-            <button
-              className="bg-yellow-500 text-white p-2 rounded-md"
-              onClick={()=>handleClick(id,title)}
-            >Add Questions
-            </button>
           </p>
         </Accordion.Content>
       </Accordion.Panel>
-          })
+          }):<></>
       }
     </Accordion>
      <button
@@ -153,6 +164,6 @@ const {title,description}=formData
 </>
 }
 
-export default FacultyDashBoard
+export default InstituteDashBoard
 
 

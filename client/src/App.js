@@ -13,6 +13,7 @@ import StudentDash from './pages/studentDashboard'
 import TestWindow from './pages/testWindow'
 import Test from './pages/test'
 import FacultyDashBoard from './pages/facultyDashBoard'
+import InstituteDashBoard from './pages/instituteDashboard'
 
 const App = () => {
   return <>
@@ -29,6 +30,7 @@ const App = () => {
                 <Route path="/testWindow" element={<TestWindow/>} />
                 <Route path="/test" element={<Test/>} />
                 <Route path="/facultyDashboard" element={<FacultyDashBoard/>} />
+                <Route path="/instituteDashboard" element={<InstituteDashBoard/>} />
            </Routes>
      </Router>
     <ToastContainer/>
