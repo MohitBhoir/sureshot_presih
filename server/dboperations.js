@@ -3,6 +3,22 @@ const sql = require('mssql');
 const { password } = require('./dbconfig');
 //const UserTable = require("./Tables/UserTable")
 
+async function getLoginInfo(params){
+    try{
+        let pool = await sql.connect(config);
+        let product = await pool.request()
+            .input('EmailId',sql.VarChar(50),params.EmailId)
+            .input('Password', sql.VarChar(150),params.Password)
+            .input('TypeId', sql.Int,params.TypeId)
+            .execute("GetLoginInfo");
+        return product.recordsets;
+            
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 async function getUsers(){
     try{
         let pool = await sql.connect(config);
@@ -308,6 +324,7 @@ async function addToTestLog(params) //remaining to check
 }
 
 module.exports ={
+    getLoginInfo: getLoginInfo,
     getUsers: getUsers,
     addStudent: addStudent,
     addFaculty: addFaculty,
@@ -325,5 +342,5 @@ module.exports ={
     addQuestion: addQuestion,
     getCourseQuestionBank: getCourseQuestionBank,
     getTestLog : getTestLog,
-    addToTestLog : addToTestLog,
+    addToTestLog : addToTestLog
 }

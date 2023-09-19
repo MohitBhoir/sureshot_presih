@@ -20,6 +20,16 @@ router.use((request, response, next)=> { //middleware(used for authentication)
 })
 
 
+router.route('/login').post((request,response)=>
+{
+    let userinfo = {... request.body};
+    Db.getLoginInfo(userinfo).then(result=>
+        {
+            response.status(201).json(result);
+        })
+}
+)
+
 router.route('/user').get((request,response)=>{
     
     Db.getUsers().then(result =>{

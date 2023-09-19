@@ -2,7 +2,7 @@ const config =
 {
     user: 'sa',
     password:'root',    
-    server:'LAPTOP-9IHDAQAC',    
+    server:'AKASH',    
     database:'PreSIH_good',
     options:
     {
