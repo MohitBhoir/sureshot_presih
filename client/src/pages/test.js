@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 const qbank = require('./qbank.json');
 
 const Test = () => {
+  const navigate = useNavigate()
+  const maxLen = 15
   const testInfo = JSON.parse(localStorage.getItem('testInfo'))
   const user = JSON.parse(localStorage.getItem('userData'))
+  let factid
+  if (user === null) {
+    factid = null;
+    user = null;
+  }
+  else {
+    factid = user.Id
+  }
   const [questions, setQuestions] = useState(qbank.quest)
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scoredMarks, setScoredMarks] = useState(0);
@@ -11,6 +24,7 @@ const Test = () => {
   const [userAnswers, setUserAnswers] = useState([]);
   const [recentQuestions, setRecentQuestions] = useState([]);
   const [timer, setTimer] = useState(0);
+  const [totalDiff, setTotDiff] = useState(0);
   const [qCount, setQCount] = useState(1);
   let timerInterval;
 
@@ -140,6 +154,10 @@ const Test = () => {
     tempp = totalMarks + questions[currentQuestion].marks;
     setTotalMarks(tempp);
     console.log("TotalMarks: ", tempp)
+
+    tempp = totalDiff + questions[currentQuestion].difficulty
+    setTotDiff(tempp);
+
     const temp_ans = [
       {
         questionId: questions[currentQuestion].id,
@@ -190,11 +208,45 @@ const Test = () => {
     }
   };
 
+  const logTest = async () => {
+    try {
+      console.log({
+        StudentId: factid,
+        CourseId: testInfo.id,
+        MarksScored: scoredMarks,
+        TotalMarks: totalMarks,
+        AvgDiff: totalDiff / maxLen
+      })
+      const res = await fetch('/api/testlog', {
+        method: "POST",
+        headers: {
+          "Authorization": "",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          StudentId: factid,
+          CourseId: testInfo.id,
+          MarksScored: scoredMarks,
+          TotalMarks: totalMarks,
+          AvgDiff: totalDiff / maxLen
+        })
+      })
+      console.log("total diff: ", totalDiff)
+      if (res.ok) {
+        toast.success("Course added successfully")
+      } else {
+        toast.error('user not authorized')
+      }
+    } catch (error) {
+      toast.error("sorry,some unexpected error occured!")
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     if (currentQuestion === questions.length - 1 && timer === 0) {
       clearInterval(timerInterval);
-    } else if (qCount >= 15 || currentQuestion === questions.length) {
+    } else if (qCount > maxLen || currentQuestion === questions.length) {
       // All questions are answered, stop the timer
 
 
@@ -207,7 +259,7 @@ const Test = () => {
       //   totalmarks,
       //   avgdiff
       // }
-
+      logTest()
 
       clearInterval(timerInterval);
     }
@@ -216,7 +268,7 @@ const Test = () => {
   return <>
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Online Test</h1>
-      {(qCount < 15 && currentQuestion < questions.length) ? (
+      {(qCount < maxLen+1 && currentQuestion < questions.length) ? (
         <div>
           <p>Question {qCount}:</p>
           <p>{questions[currentQuestion].question}</p>
