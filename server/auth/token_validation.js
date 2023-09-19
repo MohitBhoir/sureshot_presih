@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require('../dbconfig');
+require('dotenv').config();
 
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
     if (token) {
       // Remove Bearer from string
       token = token.slice(7);
-      jwt.verify(token, "access-token-secret", (err, decoded) => {
+      jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
         if (err) {
           console.log(err);
           return res.json({
