@@ -234,14 +234,14 @@ async function addCourse(params)
 }
 
 
-async function addFacultyCourse(params) //remaining to check
+async function addFacultyCourse(params) 
 {
     try
     {
         let pool = await sql.connect(config);
         let insertNewFacultyCourse = await pool.request()
             .input('Fac_Id',sql.Int,params.Fac_Id)   
-            .input('CourseIdsString',sql.NVarChar(max),params.CourseIdsString) 
+            .input('CourseIdsString',sql.NVarChar(sql.MAX),params.CourseIdsString) 
             .execute('CourseFacultyRegister');
         return insertNewFacultyCourse.recordsets;    
     }
@@ -249,14 +249,14 @@ async function addFacultyCourse(params) //remaining to check
         console.log(error); }
 }
 
-async function addStudentCourse(params) //remaining to check
+async function addStudentCourse(params)
 {
     try
     {
         let pool = await sql.connect(config);
         let insertNewStudentCourse = await pool.request()
             .input('Student_Id',sql.Int,params.Student_Id)   
-            .input('CourseIdsString',sql.NVarChar(max),params.CourseIdsString) 
+            .input('CourseIdsString',sql.NVarChar(MAX),params.CourseIdsString) 
             .execute('CourseStudentRegister');
         return insertNewStudentCourse.recordsets;    
     }
