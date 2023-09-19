@@ -1,0 +1,704 @@
+{
+    "quest": [
+        {
+            "id": 21,
+            "question": "What is the purpose of the 'volatile' keyword in C++?",
+            "options": [
+                "To declare a variable as constant",
+                "To indicate that a variable may change at any time",
+                "To create a new data type",
+                "To declare a variable as a pointer"
+            ],
+            "correctAnswer": "To indicate that a variable may change at any time",
+            "difficulty": 5,
+            "timeLimit": 30,
+            "marks": 15
+        },
+        {
+            "id": 22,
+            "question": "What is the OOP (Object-Oriented Programming) concept in C++?",
+            "options": [
+                "A type of loop",
+                "A programming paradigm that uses objects and classes",
+                "A type of data structure",
+                "A library in C++"
+            ],
+            "correctAnswer": "A programming paradigm that uses objects and classes",
+            "difficulty": 5,
+            "timeLimit": 30,
+            "marks": 15
+        },
+        {
+            "id": 23,
+            "question": "What is a smart pointer in C++?",
+            "options": [
+                "A pointer that cannot be dereferenced",
+                "A type of loop",
+                "A pointer that automatically manages memory",
+                "A pointer with no address"
+            ],
+            "correctAnswer": "A pointer that automatically manages memory",
+            "difficulty": 5,
+            "timeLimit": 30,
+            "marks": 15
+        },
+        {
+            "id": 1,
+            "question": "What does C++ stand for?",
+            "options": [
+                "Computer Plus Plus",
+                "C Plus",
+                "C Plus Plus",
+                "C Positive"
+            ],
+            "correctAnswer": "C Plus Plus",
+            "difficulty": 1,
+            "timeLimit": 20,
+            "marks": 5
+        },
+        {
+            "id": 2,
+            "question": "Which operator is used for addition in C++?",
+            "options": [
+                "+",
+                "-",
+                "*",
+                "/"
+            ],
+            "correctAnswer": "+",
+            "difficulty": 1,
+            "timeLimit": 20,
+            "marks": 5
+        },
+        {
+            "id": 3,
+            "question": "What is the primary purpose of the 'cout' object in C++?",
+            "options": [
+                "Input",
+                "Output",
+                "Calculation",
+                "Comparison"
+            ],
+            "correctAnswer": "Output",
+            "difficulty": 1,
+            "timeLimit": 20,
+            "marks": 5
+        },
+        {
+            "id": 4,
+            "question": "Which data type is used to store whole numbers in C++?",
+            "options": [
+                "int",
+                "float",
+                "char",
+                "double"
+            ],
+            "correctAnswer": "int",
+            "difficulty": 1,
+            "timeLimit": 20,
+            "marks": 5
+        },
+        {
+            "id": 5,
+            "question": "What is the correct syntax for a 'for' loop in C++?",
+            "options": [
+                "for (i = 0; i < 10; i++)",
+                "loop (i = 0; i < 10; i++)",
+                "repeat (i = 0; i < 10; i++)",
+                "while (i < 10; i++)"
+            ],
+            "correctAnswer": "for (i = 0; i < 10; i++)",
+            "difficulty": 1,
+            "timeLimit": 20,
+            "marks": 5
+        },
+        {
+            "id": 6,
+            "question": "What is the difference between '++i' and 'i++' in C++?",
+            "options": [
+                "'++i' increments 'i' after its current value is used",
+                "'i++' increments 'i' before its current value is used",
+                "'++i' and 'i++' are equivalent",
+                "There is no such thing as '++i' or 'i++' in C++"
+            ],
+            "correctAnswer": "'++i' increments 'i' before its current value is used",
+            "difficulty": 2,
+            "timeLimit": 25,
+            "marks": 7
+        },
+        {
+            "id": 7,
+            "question": "What is the purpose of the 'break' statement in a 'switch' statement in C++?",
+            "options": [
+                "It ends the entire program",
+                "It exits the current loop",
+                "It exits the current 'switch' statement",
+                "It does nothing in a 'switch' statement"
+            ],
+            "correctAnswer": "It exits the current 'switch' statement",
+            "difficulty": 2,
+            "timeLimit": 25,
+            "marks": 7
+        },
+        {
+            "id": 8,
+            "question": "What is the role of the 'const' keyword in C++?",
+            "options": [
+                "To declare a variable as a constant",
+                "To declare a variable as a pointer",
+                "To declare a variable as a global variable",
+                "To declare a variable as a function"
+            ],
+            "correctAnswer": "To declare a variable as a constant",
+            "difficulty": 2,
+            "timeLimit": 25,
+            "marks": 7
+        },
+        {
+            "id": 9,
+            "question": "What is the output of the following C++ code?\n\n```\n#include <iostream>\nusing namespace std;\nint main() {\n  int x = 5;\n  cout << x + 1 << endl;\n}\n```\n",
+            "options": [
+                "6",
+                "7",
+                "5+1",
+                "Error: 'using namespace std;' is missing"
+            ],
+            "correctAnswer": "6",
+            "difficulty": 2,
+            "timeLimit": 25,
+            "marks": 7
+        },
+        {
+            "id": 10,
+            "question": "In C++, how do you create a single-line comment?",
+            "options": [
+                "/* This is a comment */",
+                "// This is a comment",
+                "# This is a comment",
+                "%% This is a comment"
+            ],
+            "correctAnswer": "// This is a comment",
+            "difficulty": 2,
+            "timeLimit": 25,
+            "marks": 7
+        },
+        {
+            "id": 11,
+            "question": "What is function overloading in C++?",
+            "options": [
+                "Defining multiple functions with the same name but different parameters",
+                "Defining multiple functions with the same name and same parameters",
+                "Defining a function with no parameters",
+                "Defining a function with a single parameter"
+            ],
+            "correctAnswer": "Defining multiple functions with the same name but different parameters",
+            "difficulty": 3,
+            "timeLimit": 25,
+            "marks": 10
+        },
+        {
+            "id": 12,
+            "question": "What is the purpose of the 'new' operator in C++?",
+            "options": [
+                "To deallocate memory",
+                "To create an instance of a class",
+                "To allocate memory dynamically",
+                "To declare a new variable"
+            ],
+            "correctAnswer": "To allocate memory dynamically",
+            "difficulty": 3,
+            "timeLimit": 25,
+            "marks": 10
+        },
+        {
+            "id": 13,
+            "question": "What is a constructor in C++?",
+            "options": [
+                "A member function that initializes an object",
+                "A keyword for creating objects",
+                "A type of loop",
+                "A type of operator"
+            ],
+            "correctAnswer": "A member function that initializes an object",
+            "difficulty": 3,
+            "timeLimit": 25,
+            "marks": 10
+        },
+        {
+            "id": 14,
+            "question": "What is the purpose of the 'virtual' keyword in C++?",
+            "options": [
+                "To declare a variable",
+                "To indicate a base class function that can be overridden in derived classes",
+                "To create a static function",
+                "To specify a constant variable"
+            ],
+            "correctAnswer": "To indicate a base class function that can be overridden in derived classes",
+            "difficulty": 3,
+            "timeLimit": 25,
+            "marks": 10
+        },
+        {
+            "id": 15,
+            "question": "What is the output of the following code?\n\n```cpp\n#include <iostream>\nusing namespace std;\nclass Base {\npublic:\n  virtual void show() { cout << \"Base\"; }\n};\nclass Derived : public Base {\npublic:\n  void show() { cout << \"Derived\"; }\n};\nint main() {\n  Base* bptr = new Derived;\n  bptr->show();\n  return 0;\n}\n```",
+            "options": [
+                "Base",
+                "Derived",
+                "BaseDerived",
+                "Error: The code will not compile"
+            ],
+            "correctAnswer": "Derived",
+            "difficulty": 3,
+            "timeLimit": 25,
+            "marks": 10
+        },
+        {
+            "id": 16,
+            "question": "What is a lambda function in C++?",
+            "options": [
+                "A function defined within another function",
+                "A function with no parameters",
+                "A function that returns an array",
+                "A function with a single parameter"
+            ],
+            "correctAnswer": "A function defined within another function",
+            "difficulty": 4,
+            "timeLimit": 30,
+            "marks": 12
+        },
+        {
+            "id": 17,
+            "question": "What is the purpose of the 'typeid' operator in C++?",
+            "options": [
+                "To perform type casting",
+                "To identify the type of an object at runtime",
+                "To declare a new data type",
+                "To create a new object"
+            ],
+            "correctAnswer": "To identify the type of an object at runtime",
+            "difficulty": 4,
+            "timeLimit": 30,
+            "marks": 12
+        },
+        {
+            "id": 18,
+            "question": "What is a template in C++?",
+            "options": [
+                "A blueprint for creating objects",
+                "A keyword for creating functions",
+                "A class with no member functions",
+                "A type of loop"
+            ],
+            "correctAnswer": "A blueprint for creating objects",
+            "difficulty": 4,
+            "timeLimit": 30,
+            "marks": 12
+        },
+        {
+            "id": 19,
+            "question": "What is the purpose of the 'const_cast' operator in C++?",
+            "options": [
+                "To perform type casting",
+                "To cast away the const-ness of a variable",
+                "To create a constant variable",
+                "To declare a constant function"
+            ],
+            "correctAnswer": "To cast away the const-ness of a variable",
+            "difficulty": 4,
+            "timeLimit": 30,
+            "marks": 12
+        },
+        {
+            "id": 20,
+            "question": "What is RAII (Resource Acquisition Is Initialization) in C++?",
+            "options": [
+                "A memory management technique",
+                "A design pattern for managing resources",
+                "A type of loop",
+                "A keyword for creating classes"
+            ],
+            "correctAnswer": "A design pattern for managing resources",
+            "difficulty": 4,
+            "timeLimit": 30,
+            "marks": 12
+        },
+        {
+            "id": 24,
+            "question": "What is the purpose of the 'namespace' concept in C++?",
+            "options": [
+                "To create global variables",
+                "To avoid naming conflicts by encapsulating code",
+                "To declare classes",
+                "To define data types"
+            ],
+            "correctAnswer": "To avoid naming conflicts by encapsulating code",
+            "difficulty": 5,
+            "timeLimit": 30,
+            "marks": 15
+        },
+        {
+            "id": 25,
+            "question": "What is the Big O notation used for in C++?",
+            "options": [
+                "To define variable types",
+                "To analyze the time complexity of algorithms",
+                "To declare arrays",
+                "To create functions"
+            ],
+            "correctAnswer": "To analyze the time complexity of algorithms",
+            "difficulty": 5,
+            "timeLimit": 30,
+            "marks": 15
+        },
+        {
+            "id": 26,
+            "question": "What is a pure virtual function in C++?",
+            "options": [
+                "A function that has a pure integer return type",
+                "A function that is declared without any implementation in a base class",
+                "A function that cannot be overridden in derived classes",
+                "A function that is declared with the 'final' keyword"
+            ],
+            "correctAnswer": "A function that is declared without any implementation in a base class",
+            "difficulty": 6,
+            "timeLimit": 35,
+            "marks": 20
+        },
+        {
+            "id": 27,
+            "question": "What is multiple inheritance in C++?",
+            "options": [
+                "Inheriting from more than one base class in a single derived class",
+                "Inheriting from a single base class",
+                "Inheriting from derived classes",
+                "Inheriting from classes with the same name"
+            ],
+            "correctAnswer": "Inheriting from more than one base class in a single derived class",
+            "difficulty": 6,
+            "timeLimit": 35,
+            "marks": 20
+        },
+        {
+            "id": 28,
+            "question": "What is a friend function in C++?",
+            "options": [
+                "A function that can access private and protected members of a class",
+                "A function that cannot access class members",
+                "A function that is declared with 'static'",
+                "A function that is automatically called when an object is created"
+            ],
+            "correctAnswer": "A function that can access private and protected members of a class",
+            "difficulty": 6,
+            "timeLimit": 35,
+            "marks": 20
+        },
+        {
+            "id": 29,
+            "question": "What is the purpose of the 'typeid' operator in C++?",
+            "options": [
+                "To perform type casting",
+                "To identify the type of an object at runtime",
+                "To declare a new data type",
+                "To create a new object"
+            ],
+            "correctAnswer": "To identify the type of an object at runtime",
+            "difficulty": 6,
+            "timeLimit": 35,
+            "marks": 20
+        },
+        {
+            "id": 30,
+            "question": "What is operator overloading in C++?",
+            "options": [
+                "Defining multiple operators with the same functionality",
+                "Defining new operators in C++",
+                "Defining the behavior of existing operators for user-defined types",
+                "Defining operators with different parameters"
+            ],
+            "correctAnswer": "Defining the behavior of existing operators for user-defined types",
+            "difficulty": 6,
+            "timeLimit": 35,
+            "marks": 20
+        },
+        {
+            "id": 31,
+            "question": "What is a functor in C++?",
+            "options": [
+                "A function pointer",
+                "A class or object that acts like a function",
+                "A lambda expression",
+                "A type of loop"
+            ],
+            "correctAnswer": "A class or object that acts like a function",
+            "difficulty": 7,
+            "timeLimit": 40,
+            "marks": 25
+        },
+        {
+            "id": 32,
+            "question": "What is the purpose of the 'const' member function in C++?",
+            "options": [
+                "To declare a function as a constant",
+                "To modify the value of class members",
+                "To indicate that the function does not modify the object",
+                "To make the function private"
+            ],
+            "correctAnswer": "To indicate that the function does not modify the object",
+            "difficulty": 7,
+            "timeLimit": 40,
+            "marks": 25
+        },
+        {
+            "id": 33,
+            "question": "What is SFINAE (Substitution Failure Is Not An Error) in C++?",
+            "options": [
+                "A design pattern",
+                "A type of loop",
+                "A principle in template metaprogramming",
+                "A type of operator"
+            ],
+            "correctAnswer": "A principle in template metaprogramming",
+            "difficulty": 7,
+            "timeLimit": 40,
+            "marks": 25
+        },
+        {
+            "id": 34,
+            "question": "What is the purpose of the 'auto' keyword in C++11 and later?",
+            "options": [
+                "To define automatic variables",
+                "To perform automatic type conversion",
+                "To declare anonymous functions",
+                "To deduce the type of a variable automatically"
+            ],
+            "correctAnswer": "To deduce the type of a variable automatically",
+            "difficulty": 7,
+            "timeLimit": 40,
+            "marks": 25
+        },
+        {
+            "id": 35,
+            "question": "What is a CRTP (Curiously Recurring Template Pattern) in C++?",
+            "options": [
+                "A design pattern that uses recursion",
+                "A type of loop",
+                "A template pattern where a class derives from a template instantiation of itself",
+                "A type of operator"
+            ],
+            "correctAnswer": "A template pattern where a class derives from a template instantiation of itself",
+            "difficulty": 7,
+            "timeLimit": 40,
+            "marks": 25
+        },
+        {
+            "id": 36,
+            "question": "What is the purpose of the 'volatile' keyword in C++?",
+            "options": [
+                "To declare a variable as constant",
+                "To indicate that a variable may change at any time",
+                "To create a new data type",
+                "To declare a variable as a pointer"
+            ],
+            "correctAnswer": "To indicate that a variable may change at any time",
+            "difficulty": 8,
+            "timeLimit": 40,
+            "marks": 30
+        },
+        {
+            "id": 37,
+            "question": "What is the difference between 'std::map' and 'std::unordered_map' in C++?",
+            "options": [
+                "'std::map' is a sorted container, while 'std::unordered_map' is a hash container",
+                "'std::map' does not allow duplicates, while 'std::unordered_map' does",
+                "'std::map' is faster than 'std::unordered_map'",
+                "'std::unordered_map' is a sorted container, while 'std::map' is a hash container"
+            ],
+            "correctAnswer": "'std::map' is a sorted container, while 'std::unordered_map' is a hash container",
+            "difficulty": 8,
+            "timeLimit": 40,
+            "marks": 30
+        },
+        {
+            "id": 38,
+            "question": "What is the purpose of the 'try-catch' block in C++?",
+            "options": [
+                "To handle exceptions and perform error handling",
+                "To define a new class",
+                "To create objects",
+                "To perform type casting"
+            ],
+            "correctAnswer": "To handle exceptions and perform error handling",
+            "difficulty": 8,
+            "timeLimit": 40,
+            "marks": 30
+        },
+        {
+            "id": 39,
+            "question": "What is the role of the 'mutable' keyword in C++?",
+            "options": [
+                "To declare a constant variable",
+                "To specify that a class member can be modified even in a const member function",
+                "To indicate that a class is immutable",
+                "To create a new instance of a class"
+            ],
+            "correctAnswer": "To specify that a class member can be modified even in a const member function",
+            "difficulty": 8,
+            "timeLimit": 40,
+            "marks": 30
+        },
+        {
+            "id": 40,
+            "question": "What is a CRTP (Curiously Recurring Template Pattern) in C++?",
+            "options": [
+                "A design pattern that uses recursion",
+                "A type of loop",
+                "A template pattern where a class derives from a template instantiation of itself",
+                "A type of operator"
+            ],
+            "correctAnswer": "A template pattern where a class derives from a template instantiation of itself",
+            "difficulty": 8,
+            "timeLimit": 40,
+            "marks": 30
+        },
+        {
+            "id": 41,
+            "question": "What is the purpose of the 'decltype' keyword in C++?",
+            "options": [
+                "To declare variables",
+                "To specify variable types",
+                "To deduce the type of an expression at compile-time",
+                "To perform type casting"
+            ],
+            "correctAnswer": "To deduce the type of an expression at compile-time",
+            "difficulty": 9,
+            "timeLimit": 45,
+            "marks": 40
+        },
+        {
+            "id": 42,
+            "question": "What is the concept of 'perfect forwarding' in C++?",
+            "options": [
+                "Forwarding function arguments to another function without losing their original types",
+                "Forwarding variables with type conversions",
+                "Forwarding objects to a different thread",
+                "Forwarding exceptions in a catch block"
+            ],
+            "correctAnswer": "Forwarding function arguments to another function without losing their original types",
+            "difficulty": 9,
+            "timeLimit": 45,
+            "marks": 40
+        },
+        {
+            "id": 43,
+            "question": "What is RAII (Resource Acquisition Is Initialization) in C++?",
+            "options": [
+                "A memory management technique",
+                "A design pattern for managing resources",
+                "A type of loop",
+                "A keyword for creating classes"
+            ],
+            "correctAnswer": "A design pattern for managing resources",
+            "difficulty": 9,
+            "timeLimit": 45,
+            "marks": 40
+        },
+        {
+            "id": 44,
+            "question": "What is a lambda capture in C++?",
+            "options": [
+                "A mechanism for capturing and storing the state of a lambda function",
+                "A method for capturing exceptions in lambda functions",
+                "A technique for capturing global variables",
+                "A type of loop"
+            ],
+            "correctAnswer": "A mechanism for capturing and storing the state of a lambda function",
+            "difficulty": 9,
+            "timeLimit": 45,
+            "marks": 40
+        },
+        {
+            "id": 45,
+            "question": "What is a variadic template in C++?",
+            "options": [
+                "A template with variable-length parameter lists",
+                "A type of loop",
+                "A template that accepts any type",
+                "A template with a fixed number of parameters"
+            ],
+            "correctAnswer": "A template with variable-length parameter lists",
+            "difficulty": 9,
+            "timeLimit": 45,
+            "marks": 40
+        },
+        {
+            "id": 46,
+            "question": "What is the purpose of the 'std::forward' function in C++?",
+            "options": [
+                "To reverse the order of function arguments",
+                "To forward arguments to another function",
+                "To force move semantics",
+                "To declare a function as a forward reference"
+            ],
+            "correctAnswer": "To forward arguments to another function",
+            "difficulty": 10,
+            "timeLimit": 45,
+            "marks": 50
+        },
+        {
+            "id": 47,
+            "question": "What is the purpose of the 'constexpr' keyword in C++?",
+            "options": [
+                "To declare a constant variable",
+                "To specify constant expressions",
+                "To create compile-time constants",
+                "To define a constructor"
+            ],
+            "correctAnswer": "To create compile-time constants",
+            "difficulty": 10,
+            "timeLimit": 45,
+            "marks": 50
+        },
+        {
+            "id": 48,
+            "question": "What is the concept of 'type erasure' in C++?",
+            "options": [
+                "The removal of type information from objects",
+                "The addition of type information to objects",
+                "The conversion of one type to another",
+                "The hiding of class members"
+            ],
+            "correctAnswer": "The removal of type information from objects",
+            "difficulty": 10,
+            "timeLimit": 45,
+            "marks": 50
+        },
+        {
+            "id": 49,
+            "question": "What is the purpose of the 'volatile' keyword in C++?",
+            "options": [
+                "To declare a variable as constant",
+                "To indicate that a variable may change at any time",
+                "To create a new data type",
+                "To declare a variable as a pointer"
+            ],
+            "correctAnswer": "To indicate that a variable may change at any time",
+            "difficulty": 10,
+            "timeLimit": 45,
+            "marks": 50
+        },
+        {
+            "id": 50,
+            "question": "What is the purpose of the 'noexcept' specifier in C++?",
+            "options": [
+                "To specify that a function should not throw exceptions",
+                "To specify that a function must throw exceptions",
+                "To define a custom exception class",
+                "To indicate that a function is not needed"
+            ],
+            "correctAnswer": "To specify that a function should not throw exceptions",
+            "difficulty": 10,
+            "timeLimit": 45,
+            "marks": 50
+        }
+    ]
+}
