@@ -140,7 +140,7 @@ const Test = () => {
       }
       return total;
     }, 0);
-    console.log("sumProductObtained: ", sumProductObtained)
+    // console.log("sumProductObtained: ", sumProductObtained)
 
 
     // Calculate the sum of product of maximum time points and marks
@@ -153,11 +153,11 @@ const Test = () => {
       }
       return total;
     }, 0);
-    console.log("sumProductMax: ", sumProductMax)
+    // console.log("sumProductMax: ", sumProductMax)
 
     // Calculate avgTimePointsRatio only if sumProductMax is not 0
     const avgTimePointsRatio = (sumProductMax === 0) ? 0 : sumProductObtained / sumProductMax;
-    console.log("ratio: ", avgTimePointsRatio)
+    // console.log("ratio: ", avgTimePointsRatio)
 
     // Find the next question difficulty level based on the ratio
     let nextDifficulty;

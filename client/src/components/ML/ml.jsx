@@ -38,7 +38,7 @@ function Ml() {
 
     socketRef.current.onmessage = function (event) {
       var pred_log = JSON.parse(event.data);
-      console.log(pred_log.id);
+      // console.log(pred_log.id);
       // setFace(pred_log.id)
       name = pred_log.id;
     };
@@ -59,7 +59,7 @@ function Ml() {
       webcamRef.current !== null &&
       webcamRef.current.video.readyState === 4
     ) {
-      console.log("available");
+      // console.log("available");
       // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
@@ -83,7 +83,7 @@ function Ml() {
         socketRef.current.send(data);
       }
     } else {
-      console.log("unavailable");
+      // console.log("unavailable");
     }
   };
 
@@ -137,29 +137,29 @@ function Ml() {
   }, []);
 
   return (
-    <div className="Ml h-screen flex flex-col justify-end">
-      <header className="Ml-header">
+    <div className="h-screen flex flex-col">
+      <header className="Ml-header flex-grow">
         <div className="flex justify-start items-end">
           <div className="w-1/2 pb-4 pl-4">
             <h1>{flag === 1 ? "Don't Copy." : null}</h1>
             <h1>Copied {count} many times</h1>
             <h1>{name}</h1>
           </div>
-
+  
           <div className="w-1/2">
             <Webcam
               ref={webcamRef}
               muted={true}
               style={{
-                width: "100%",
+                width: "50%",
                 height: "auto",
               }}
             />
-
+  
             <canvas
               ref={canvasRef}
               style={{
-                width: "100%",
+                width: "50%",
                 height: "auto",
               }}
             />
@@ -168,6 +168,7 @@ function Ml() {
       </header>
     </div>
   );
+  
 }
 
 export default Ml;
