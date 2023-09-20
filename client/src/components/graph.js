@@ -182,6 +182,10 @@ const Graph = () => {
   pdata.map((f) => {
     f["Date"] = (parseInt(f.Date.slice(8, 10))).toString() + "/" + (parseInt(f.Date.slice(5, 7))).toString();
   })
+
+  pdata.map((f) => {
+    f["AvgDiff"] = f.AvgDiff*10;
+  })
   console.log(pdata)
   return (
     <div className='graph-head'>
