@@ -1,8 +1,8 @@
 const config = 
 {
     user: 'sa',
-    password:'root',    
-    server:'AKASH',    
+    password:'Yatharth@2004',    
+    server:'localhost',    
     database:'PreSIH_good',
     options:
     {
