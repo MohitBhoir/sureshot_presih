@@ -162,6 +162,7 @@ router.route('/student/course').post((request,response)=> //remaining to check
 router.route('/question').post((request,response)=>
 {
     let questionDetails = {... request.body};
+    console.log(questionDetails)
     Db.addQuestion(questionDetails).then(result=>
         {
             response.status(201).json(result);

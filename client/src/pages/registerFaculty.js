@@ -22,7 +22,7 @@ const RegisterFaculty = () => {
     }))
   }
 
-  const loginUser = async (email,password,finalType) => {
+  const loginUser = async (email, password, finalType) => {
     const res = await fetch('/api/login/', {
       method: "POST",
       headers: {
@@ -71,7 +71,7 @@ const RegisterFaculty = () => {
       if (res.ok) {
         toast.success("register successfully")
         // navigate("/login")
-        loginUser(email,password)
+        loginUser(email, password)
       } else {
         if (data.msg === "user already exist") {
           toast.error("user already exist!")
@@ -81,9 +81,6 @@ const RegisterFaculty = () => {
       }
     }
   }
-
-
-
 
   return <>
     <div className='flex gap-5 justify-center items-center'>
